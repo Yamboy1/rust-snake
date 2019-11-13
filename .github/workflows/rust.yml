@@ -4,11 +4,10 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - run: sudo apt-get install libncurses5-dev libncursesw5-dev 
+    - run: DEBIAN_FRONTEND=noninteractive sudo apt-get install libncurses5-dev libncursesw5-dev 
     - uses: actions/checkout@v1
     - name: Build
       run: cargo build --verbose
@@ -16,7 +15,6 @@ jobs:
       run: cargo test --verbose
   
   clippy:
-    
     runs-on: ubuntu-latest
     
     steps:
