@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - run: sudo DEBIAN_FRONTEND=noninteractiveapt-get install libncurses5-dev libncursesw5-dev 
+    - run: sudo DEBIAN_FRONTEND=noninteractive apt-get install libncurses5-dev libncursesw5-dev 
     - uses: actions/checkout@v1
     - name: Build
       run: cargo build --verbose
