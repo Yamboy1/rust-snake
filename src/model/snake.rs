@@ -32,9 +32,9 @@ impl Snake {
 	pub fn travel(&mut self) {
 		self.position = match self.direction {
 			Direction::Up => (self.position.0, self.position.1-1),
+			Direction::Left => (self.position.0-1, self.position.1),
 			Direction::Down => (self.position.0, self.position.1+1),
-			Direction::Left => (self.position.0+1, self.position.1),
-			Direction::Right => (self.position.0-1, self.position.1),
+			Direction::Right => (self.position.0+1, self.position.1),
 		};
 	}
 
@@ -68,8 +68,24 @@ mod test {
 	}
 	#[test]
 	fn snake_travels_in_the_right_direction() {
-		let mut snake = Snake::new((0, 0), Direction::Right);
+		let mut snake = Snake::new((0,0), Direction::Right);
 		snake.travel();
-		assert_eq!(snake.position, (-1,0));
+		assert_eq!(snake.position, (1,0));
+		snake.direction = Direction::Down;
+		snake.travel();
+		assert_eq!(snake.position, (1,1));
+		snake.direction = Direction::Left;
+		snake.travel();
+		assert_eq!(snake.position, (0,1));
+		snake.direction = Direction::Up;
+		snake.travel();
+		assert_eq!(snake.position, (0,0));
+	}
+	#[test]
+	fn get_position_gets_current_position() {
+		let mut snake = Snake::new((0,0), Direction::Right);
+		assert_eq!(snake.get_position(), snake.position);
+		snake.position = (-1,566);
+		assert_eq!(snake.get_position(), snake.position)
 	}
 }
