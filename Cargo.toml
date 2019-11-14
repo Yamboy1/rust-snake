@@ -1,12 +1,21 @@
 [package]
-name = "snake"
-version = "0.1.0"
 authors = ["Yamboy1 <yamboyd1@gmail.com>"]
+categories = ["command-line-utilities", "game-engines", "games"]
+description = "A snake binary with a public API"
 edition = "2018"
-
-[[bin]]
-path = "src/bin/main.rs"
+homepage = "https://github.com/Yamboy1/rust-snake"
+keywords = ["snake", "game", "wip", "api"]
+license = "MIT"
 name = "snake"
+readme = "README.md"
+version = "0.1.0"
+
+[badges]
+maintenance = { status = "experimental" }
+
+#[[bin]]
+#path = "src/bin/mod"
+#name = "snake"
 
 [dependencies]
 pancurses = "0.16.1"
