@@ -13,6 +13,15 @@ jobs:
       run: cargo build --verbose
     - name: Run tests
       run: cargo test --verbose
+    - uses: davidB/rust-cargo-make@v1
+    - name: Cargo Tarpaulin
+      run: cargo make cargo-tarpaulin && cargo tarpaulin -o Xml
+    - name: Codecov
+      uses: codecov/codecov-action@v1.0.3
+      with:
+        token: ${{secrets.CODECOV_TOKEN}} #required
+        file: ./cobertura.xml #optional
+        flags: unittests #optional
   
   clippy:
     runs-on: ubuntu-latest
