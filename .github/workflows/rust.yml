@@ -22,4 +22,4 @@ jobs:
       - name: Check Clippy
         uses: actions-rs/clippy-check@v1.0.0
         with:
-          token: ${ secrets.GITHUB_TOKEN }
+          token: ${{ secrets.GITHUB_TOKEN }}
