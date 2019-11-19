@@ -10,12 +10,13 @@ name = "snake"
 readme = "README.md"
 version = "0.1.0"
 
+[[bin]]
+path = "src/bin/snake.rs"
+name = "snake"
+
 [badges]
 maintenance = { status = "experimental" }
 
-#[[bin]]
-#path = "src/bin/mod"
-#name = "snake"
-
 [dependencies]
 pancurses = "0.16.1"
+rand = "0.7.2"
