@@ -4,12 +4,12 @@ use crate::types::{Snake, CoordinateVector};
 
 /// Moves the snake IN PLACE along the `direction` Vector.
 /// This is also the function that makes the snake grow
-/// by keeping the tail intact, whilst adding onto the head
+/// by keeping the tail intact, whilst adding onto the head.
 ///
 /// The typical usage of the grow ability would be
 /// to check if the snake head is touching food,
-/// and if so, you would set grow to true, and in the next
-/// frame, the snake will grow.
+/// and if so, you would grow the snake the next time
+/// that it moves.
 ///
 /// # Examples
 ///
@@ -37,7 +37,7 @@ pub fn travel(snake: &mut Snake, direction: CoordinateVector, grow: bool) -> Coo
 /* CONDITIONS */
 
 /// Checks if the head of the snake is touching `object`.
-/// This is useful for collision detection with food or obstacles
+/// This is useful for collision detection with food or obstacles.
 ///
 /// # Examples
 ///
