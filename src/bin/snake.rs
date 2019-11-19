@@ -7,7 +7,7 @@ use pancurses::{initscr, noecho, Window, Input, endwin, curs_set};
 
 use snake::{
 	types::{CoordinateVector, Snake},
-	base::{travel, head_touching_object, snake_touching_head, head_out_of_bounds},
+	core::{travel, head_touching_object, head_touching_self, head_out_of_bounds},
 };
 
 fn main() {
@@ -31,7 +31,7 @@ fn main() {
 		let eating_food = head_touching_object(&snake, food);
 		if eating_food { food = get_new_food_position(&snake, board_bounds, &mut rng) }
 		travel(&mut snake, direction, eating_food);
-		if snake_touching_head(&snake) || head_out_of_bounds(&snake, board_bounds) { break; }
+		if head_touching_self(&snake) || head_out_of_bounds(&snake, board_bounds) { break; }
 		sleep(Duration::from_millis(100));
 	}
 	endwin();
