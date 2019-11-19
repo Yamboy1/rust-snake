@@ -12,5 +12,4 @@ $ cargo install snake
 
 # Using the API
 
-The docs are currently a WIP, however you can try having a look at ./src/bin/snake.rs for an example. Note that this
- is a very low level API for now until we develop a wrapper around it.
+Documentation can be found [here](https://docs.rs/snake/)
