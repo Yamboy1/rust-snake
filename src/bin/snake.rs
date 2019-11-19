@@ -12,13 +12,12 @@ use snake::{
 
 fn main() {
 	let window = initscr();
-	window.printw("Type things, press delete to quit\n");
 	window.refresh();
 	window.keypad(true);
 	window.nodelay(true);
 	curs_set(0);
-	let (y,x) = window.get_max_yx();
 	noecho();
+	let (y,x) = window.get_max_yx();
 
 	let mut rng = thread_rng();
 	let mut direction = CoordinateVector(1,0);
@@ -36,23 +35,24 @@ fn main() {
 		sleep(Duration::from_millis(100));
 	}
 	endwin();
-	println!("{:?}", snake);
 }
 
 fn get_new_direction(window: &Window, old: CoordinateVector) -> CoordinateVector {
 	match window.getch() {
-		Some(Input::KeyLeft)  => if old.1 != 0 { CoordinateVector(-1,0) } else { old },
-		Some(Input::KeyRight) => if old.1 != 0 { CoordinateVector(1,0) } else { old },
-		Some(Input::KeyUp)    => if old.0 != 0 { CoordinateVector(0,-1) } else { old },
-		Some(Input::KeyDown)  => if old.0 != 0 { CoordinateVector(0,1) } else { old },
+		Some(Input::KeyLeft)  if old.1 != 0 => CoordinateVector(-1,0),
+		Some(Input::KeyRight) if old.1 != 0 => CoordinateVector(1,0),
+		Some(Input::KeyUp)    if old.0 != 0 => CoordinateVector(0,-1),
+		Some(Input::KeyDown)  if old.0 != 0 => CoordinateVector(0,1),
 		_ => old
 	}
 }
 
 fn get_new_food_position(snake: &Snake, bounds: CoordinateVector, rng: &mut ThreadRng) -> CoordinateVector {
 	let new_position = CoordinateVector(rng.gen_range(0,bounds.0), rng.gen_range(0,bounds.1));
-	if !snake.contains(&new_position) { new_position }
-		else { get_new_food_position(snake, bounds, rng) }
+	match snake.contains(&new_position) {
+		true => get_new_food_position(snake, bounds, rng),
+		false => new_position,
+	}
 }
 
 fn display(window: &Window, snake: &Snake, food: CoordinateVector) {
