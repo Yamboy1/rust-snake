@@ -8,7 +8,7 @@ keywords = ["snake", "game", "wip", "api"]
 license = "MIT"
 name = "snake"
 readme = "README.md"
-version = "0.3.0"
+version = "0.3.1"
 
 [[bin]]
 path = "src/bin/snake.rs"
